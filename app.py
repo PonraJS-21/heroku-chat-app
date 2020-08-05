@@ -1,4 +1,4 @@
-from flask import Flask,render_template,url_for,request
+from flask import Flask,render_template,url_for,request, jsonify
 import pandas as pd 
 import pickle
 from sklearn.feature_extraction.text import CountVectorizer
@@ -53,7 +53,8 @@ def predict():
 		data = [message]
 		vect = cv.transform(data).toarray()
 		my_prediction = clf.predict(vect)
-	return render_template('result.html',prediction = my_prediction)
+	# return render_template('result.html',prediction = my_prediction)
+	return jsonify({'result' : str(my_prediction[0])})
 
 
 

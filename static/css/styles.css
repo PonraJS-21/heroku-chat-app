@@ -5,9 +5,12 @@ body{
 }
 
 .container{
-	width:100%;
-	margin: auto;
-	overflow: hidden;
+	width:100%;	
+	text-align: center;
+	position: relative;
+	color: #fff;
+	font-size: large;
+	line-height: 100px;
 }
 
 header{
@@ -16,7 +19,6 @@ header{
 	height:120px;
 	width:100%;
 	padding-top:30px;
-
 }
 
 .main-header{
@@ -26,24 +28,23 @@ header{
 			width:100%;
 			margin:0px;
 		}
-#brandname{
-	float:left;
-	font-size:30px;
-	color: #fff;
-	margin: 10px;
-}
+
 
 header h2{
 	text-align:center;
 	color:#fff;
-
 }
 
-
+header{
+	position: relative;
+	left: -3px	;
+}
 
 .btn-info {background-color: #2196F3;
 	height:40px;
-	width:100px;} /* Blue */
+	width:100px;
+	color:white;
+} /* Blue */
 .btn-info:hover {background: #0b7dda;}
 
 
@@ -54,3 +55,20 @@ header h2{
     width: 200px;
     height: 150px;
 }
+
+.spam{
+	color:red
+}
+.ham{
+	color:greenyellow
+}
+
+@media screen and (max-width:800px) {
+	* {width:99%;}
+	.container, p{
+		font-size: 30px;
+	}
+	textarea{
+		font-size: 20px;
+	}
+  }
