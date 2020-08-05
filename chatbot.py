@@ -3,17 +3,12 @@ from nltk.stem.lancaster import LancasterStemmer
 stemmer = LancasterStemmer()
 
 import numpy
-import tensorflow as tf
-from keras.layers import Dense, LSTM
-from keras.models import Sequential, load_model
+import tflearn
+import tensorflow
 import random
 import json
 from os import path
 import pickle
-
-
-# physical_devices = tf.config.list_physical_devices('GPU') 
-# tf.config.experimental.set_memory_growth(physical_devices[0], True)
 
 with open("intents.json") as file:
     data = json.load(file)
@@ -72,26 +67,22 @@ except:
     with open("data.pickle", "wb") as f:
         pickle.dump((words, labels, training, output), f)
 
+tensorflow.reset_default_graph()
 
-modelName = 'model/model.h5'
+net = tflearn.input_data(shape=[None, len(training[0])])
+net = tflearn.fully_connected(net, 8)
+net = tflearn.fully_connected(net, 8)
+net = tflearn.fully_connected(net, len(output[0]), activation="softmax")
+net = tflearn.regression(net)
 
-
-if path.exists('model/model.h5'):
-    
-    model = load_model(modelName)
-    print('Model Loaded')
+model = tflearn.DNN(net)
+modelName = 'model/model.tfl'
+if path.exists('model/model.tfl.index'):
+    model.load(modelName)
 else:
-    model = Sequential()
-    model.add(Dense(100, input_shape=(32,  )))
-    model.add(Dense(100))
-    model.add(Dense(len(output[0]), activation="softmax"))
-
-    model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['acc'])
-    model.summary()
-    
-    model.fit(training, output, epochs=100)
+    model.fit(training, output, n_epoch=1000, batch_size=8, show_metric=True)
     model.save(modelName)
-    model = load_model(modelName)
+    model.load(modelName)
 
 
 
@@ -109,9 +100,8 @@ def bag_of_words(s, words):
     return numpy.array(bag)
 
 
-def return_chat(inp):    
-    usr_input = numpy.asarray([bag_of_words(inp, words)])
-    results = model.predict(usr_input)
+def return_chat(inp):
+    results = model.predict([bag_of_words(inp, words)])
     results_index = numpy.argmax(results)
     tag = labels[results_index]
 
@@ -119,4 +109,4 @@ def return_chat(inp):
         if tg['tag'] == tag:
             responses = tg['responses']
 
-    return (random.choice(responses))
+    return random.choice(responses)

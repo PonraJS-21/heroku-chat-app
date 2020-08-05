@@ -5,12 +5,12 @@ from chatbot import return_chat
 
 app = Flask(__name__)
 
-@app.route('my-first-chatapp-test.herokuapp.com/')
+@app.route('/')
 def home():
     a = return_chat('Hi')
     return render_template('index.html')
 
-@app.route('my-first-chatapp-test.herokuapp.com/predict',methods=['POST'])
+@app.route('/predict',methods=['POST'])
 def predict():
     '''
     For rendering results on HTML GUI

@@ -17,11 +17,11 @@ Keras-Preprocessing==1.1.2
 Markdown==3.2.2
 MarkupSafe==1.1.1
 nltk==3.5
-numpy==1.19.1
-object-detection==0.0.3
+numpy==1.19.0
+object-detection==0.1
 opt-einsum==3.2.1
-Pillow==7.2.0
 pickleshare==0.7.5
+Pillow==7.2.0
 protobuf==3.12.2
 PyYAML==5.3.1
 regex==2020.7.14
@@ -29,9 +29,9 @@ scikit-learn==0.23.1
 scipy==1.5.1
 six==1.15.0
 sklearn==0.0
-tensorboard==2.2.1
-tensorflow==2.0.0
-tensorflow-estimator==2.0.0
+tensorboard==1.15.0
+tensorflow==1.15.2
+tensorflow-estimator==1.15.1
 termcolor==1.1.0
 tflearn==0.3.2
 threadpoolctl==2.1.0
