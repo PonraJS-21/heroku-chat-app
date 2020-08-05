@@ -6,6 +6,7 @@ from sklearn.naive_bayes import MultinomialNB
 import joblib
 import pickle
 import pymongo
+import os
 
 # load the model from disk
 filename = 'nlp_model.pkl'
@@ -16,9 +17,11 @@ app = Flask(__name__)
 @app.route('/')
 def home():
 	try:
-		client = pymongo.MongoClient("mongodb://test:#ponraj121@cluster0.w4r3n.mongodb.net/?retryWrites=true&w=majority")
+		url = os.getenv('MONGOLAB_URI', 'mongodb://localhost:27017')
+		client = pymongo.MongoClient(url)
 		db = client.test
 		print(' *********************************** DB Success!')
+		print(db)
 	except Exception as e:
 		print(' *********************************** Error: {}'.format(e))
 	return render_template('home.html')
