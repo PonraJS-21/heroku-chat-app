@@ -14,8 +14,8 @@ body{
 }
 
 header{
-	background:#03A9F4;#35434a;
-	border-bottom:#448AFF 3px solid;
+	background:#5c4bab;
+	border-bottom:#000 3px solid;
 	height:120px;
 	width:100%;
 	padding-top:30px;
@@ -40,7 +40,7 @@ header{
 	left: -3px	;
 }
 
-.btn-info {background-color: #2196F3;
+.btn-info {background-color: #5c4bab;
 	height:40px;
 	width:100px;
 	color:white;
