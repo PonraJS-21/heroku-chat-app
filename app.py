@@ -16,7 +16,7 @@ app = Flask(__name__)
 @app.route('/')
 def home():
 	try:
-		client = pymongo.MongoClient("mongodb+srv://test:#ponraj121@cluster0.w4r3n.mongodb.net/?retryWrites=true&w=majority")
+		client = pymongo.MongoClient("mongodb://test:#ponraj121@cluster0.w4r3n.mongodb.net/?retryWrites=true&w=majority")
 		db = client.test
 		print(' *********************************** DB Success!')
 	except Exception as e:
