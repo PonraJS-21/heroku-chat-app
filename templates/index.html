@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Practice AJAX</title>
+    <script type="text/javascript">
+        function do_ajax(e) {
+            event.preventDefault()
+            var req = new XMLHttpRequest();
+            var result = document.getElementById('result');
+            req.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    result.innerHTML = this.responseText;
+                } else {
+                    result.innerHTML = "Sorry Somthing went wrong";
+                }
+            }
+
+            req.open('POST', "{{ url_for('predict')}}", true);
+            req.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+            req.send("chat_input=" + document.getElementById('chat-input').value);
+        }
+    </script>
+</head>
+
+<body>
+    <form onsubmit="do_ajax(event);">
+        <label>You:<input type="text" id="chat-input" value="" name-'chat_input' required /></label>
+        <input type="submit" id="btn-post" onsubmit="do_ajax(event);" value="Send" />
+        <div id="result"></div>
+    </form>
+</body>
+
+</html>
