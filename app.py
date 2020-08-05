@@ -21,7 +21,7 @@ def home():
 		client = pymongo.MongoClient(url)
 		db = client.test
 		print(' *********************************** DB Success!')
-		print(db)
+		print(db['TestEnv'])
 	except Exception as e:
 		print(' *********************************** Error: {}'.format(e))
 	return render_template('home.html')
