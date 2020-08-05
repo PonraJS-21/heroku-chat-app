@@ -5,6 +5,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
 import joblib
 import pickle
+import pymongo
 
 # load the model from disk
 filename = 'nlp_model.pkl'
@@ -14,6 +15,12 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
+	try:
+		client = pymongo.MongoClient("mongodb+srv://test:#ponraj121@cluster0.w4r3n.mongodb.net/?retryWrites=true&w=majority")
+		db = client.test
+		print(' *********************************** DB Success!')
+	except Exception as e:
+		print(' *********************************** Error: {}'.format(e))
 	return render_template('home.html')
 
 @app.route('/predict',methods=['POST'])
