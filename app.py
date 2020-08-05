@@ -17,11 +17,14 @@ app = Flask(__name__)
 @app.route('/')
 def home():
 	try:
-		url = os.getenv('MONGOLAB_URI', 'mongodb://localhost:27017')
+		url = os.getenv('MONGOLAB_URI')
+		if not url:
+			url = 'mongodb://localhost:27017'
+			
 		client = pymongo.MongoClient(url)
 		db = client.test
 		print(' *********************************** DB Success!')
-		print(db['TestEnv'])
+		print(db)
 	except Exception as e:
 		print(' *********************************** Error: {}'.format(e))
 	return render_template('home.html')
