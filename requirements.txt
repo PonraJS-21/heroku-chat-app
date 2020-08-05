@@ -17,8 +17,8 @@ Keras-Preprocessing==1.1.2
 Markdown==3.2.2
 MarkupSafe==1.1.1
 nltk==3.5
-numpy==1.19.0
-object-detection==0.1
+numpy==1.19.1
+object-detection==0.0.3
 opt-einsum==3.2.1
 Pillow==7.2.0
 pickleshare==0.7.5
