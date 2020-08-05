@@ -18,7 +18,7 @@ Markdown==3.2.2
 MarkupSafe==1.1.1
 nltk==3.5
 numpy==1.19.0
-object-detection==0.1
+object-detection==0.0.3
 opt-einsum==3.2.1
 pickleshare==0.7.5
 Pillow==7.2.0
